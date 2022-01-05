@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.ts',
@@ -9,18 +10,26 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.ts', '.wasm'],
+    fallback: {
+      fs: false,
+      path: false,
+    },
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      favicon: 'assets/favicon.png',
-      title: 'Zappar Universal AR',
+      title: 'AR NTI PYC',
       minify: {
         collapseWhitespace: true,
         minifyCSS: true,
       },
     }),
+    // new webpack.ProvidePlugin({
+    //   BABYLON: '@babylonjs/core',
+    //   Ammo: 'ammo.js',
+    // }),
   ],
   devServer: {
     contentBase: './dist/',
